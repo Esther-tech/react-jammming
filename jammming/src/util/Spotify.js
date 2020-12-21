@@ -1,8 +1,6 @@
-
-
 let accessToken;
 const clientID = "68fb6d25d65a455694545d37c00d9236";
-const redirectURI = "http://localhost:3001/";
+const redirectURI = "http://localhost:3000/";
 
 const Spotify = {
   getAccessToken() {
@@ -30,7 +28,7 @@ const Spotify = {
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
-  
+
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
@@ -52,7 +50,7 @@ const Spotify = {
   },
 
   savePlaylist(playlistName, trackURIs) {
-    if (!playlistName || !trackURIs.length) {
+    if (!playlistName || !trackURIs) {
       return;
     }
 
@@ -74,7 +72,7 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
           headers: headers,
           method: "POST",
-          body: JSON.stringify({ uris: trackURIs }) 
+          body: JSON.stringify({ uris: trackURIs })
         })
       })
     })
