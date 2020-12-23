@@ -17,7 +17,7 @@ const Spotify = {
       const expiresIn = Number(expiresInMatch[1]);
 
       //clear parameters grab new access token when expires
-      window.setTimeout(() => accessToken = '', expiresIn * 1000);
+      window.setTimeout(() => (accessToken = ''), expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
@@ -31,7 +31,8 @@ const Spotify = {
 
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
+        "Content-type": "Application/json"
       }
     }).then(response => {
       return response.json();
@@ -46,7 +47,7 @@ const Spotify = {
         album: track.album.name,
         uri: track.uri
       }));
-    });
+    }); 
   },
 
   savePlaylist(playlistName, trackURIs) {
