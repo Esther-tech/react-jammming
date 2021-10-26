@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = "68fb6d25d65a455694545d37c00d9236";
-const redirectURI = "http://localhost:3000/";
+const redirectURI = "https://playlist-creator.netlify.app";
 
 const Spotify = {
   getAccessToken() {
@@ -47,7 +47,7 @@ const Spotify = {
         album: track.album.name,
         uri: track.uri
       }));
-    }); 
+    });
   },
 
   savePlaylist(playlistName, trackURIs) {
